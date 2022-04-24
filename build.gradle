@@ -1,0 +1,23 @@
+plugins {
+    id 'java-library'
+}
+
+group 'com.gmail.bogdanova'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation (
+            "org.junit.jupiter:junit-jupiter:5.8.2",
+            "com.codeborne:selenide:6.3.5",
+            "com.github.javafaker:javafaker:1.0.2",
+            "org.slf4j:slf4j-simple:1.7.36"
+    )
+}
+
+test {
+    useJUnitPlatform()
+}
