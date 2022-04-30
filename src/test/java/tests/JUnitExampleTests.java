@@ -24,6 +24,7 @@ public class JUnitExampleTests {
     static void setUp() {
         Configuration.baseUrl = "https://www.artstation.com";
         Configuration.browserSize = "1920x1080";
+        System.out.println("BeforeAll");
     }
 
     @Test
@@ -69,16 +70,16 @@ public class JUnitExampleTests {
 
     static Stream<Arguments> choosingArtStudio() {
         return Stream.of(
-                Arguments.of("Ubisoft German Studios",
-                        List.of("https://bluebyte.ubisoft.com/en/jobs/", "Germany, Germany")),
-                Arguments.of("Cloud Chamber",
-                        List.of("http://www.cloudchamberstudios.com/", "Novato, CA (US) & Montreal, Quebec, Canada"))
+                Arguments.of("Digital Extremes",
+                        List.of("https://www.digitalextremes.com/", "London, ON, Canada")),
+                Arguments.of("Riot Games",
+                        List.of("http://www.riotgames.com/", "Los Angeles, CA, United States of America"))
         );
     }
 
     @MethodSource("choosingArtStudio")
     @ParameterizedTest(name = "Checking information about Studio {0}")
-    void choosingArtStudio(String studioName, List<String> studioInformation){
+    void choosingArtStudio(String studioName, List<String> studioInformation) {
         studioPage.openStudioPage()
                 .chooseStudio(studioName)
                 .checkStudioName(studioName)
@@ -88,7 +89,7 @@ public class JUnitExampleTests {
 
     @EnumSource(BlogCategories.class)
     @ParameterizedTest(name = "Checking the result of filtering articles by category {0}")
-    void blogFilterByCategoriesTest(BlogCategories categories){
+    void blogFilterByCategoriesTest(BlogCategories categories) {
         blogPage.openBlogPage()
                 .filterArticlesByCategory(categories.name)
                 .checkFilteringResult(categories.name);
